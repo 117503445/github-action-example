@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-const version = "1.0.4"
+const version = "1.0.5"
 
 func hello(w http.ResponseWriter, req *http.Request) {
 	fmt.Fprintf(w, "{\"code\": 0, \"message\": \"Hello World\", \"data\": {\"version\": \"%s\", \"date\": \"%s\"}}", version, time.Now())

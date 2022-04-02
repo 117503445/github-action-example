@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  backend:
+    image: 117503445/github-action-example:sha-85bb207
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ./config.yaml:/root/config.yaml
+    ports:
+      - 8080:8080
