@@ -1,5 +1,6 @@
 FROM golang:1.18.0-alpine3.15 as build
 LABEL maintainer="117503445"
+RUN apk add --no-cache git
 WORKDIR /root/project
 COPY go.mod .
 COPY go.sum .
