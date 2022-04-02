@@ -11,5 +11,9 @@ RUN go build -ldflags="-s -w" -o server
 FROM alpine:3.15 as prod
 EXPOSE 8080
 WORKDIR /root
+
+# https://stackoverflow.com/questions/66963068/docker-alpine-executable-binary-not-found-even-if-in-path
+RUN apk add gcompat 
+
 COPY --from=build /root/project/server server
 ENTRYPOINT server
