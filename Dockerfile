@@ -16,4 +16,4 @@ WORKDIR /root
 RUN apk add gcompat 
 
 COPY --from=build /root/project/server server
-ENTRYPOINT server
+ENTRYPOINT ./server
