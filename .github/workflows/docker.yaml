@@ -32,6 +32,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      # https://github.com/docker/metadata-action
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v3
@@ -46,6 +47,7 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=sha
+            type=raw,value=latest
 
       # https://github.com/docker/build-push-action
       - name: Build and push
