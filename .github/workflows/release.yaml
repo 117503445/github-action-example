@@ -43,6 +43,7 @@ jobs:
       # https://github.com/softprops/action-gh-release
       - name: Release
         uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
             github_action_example_linux_amd64
@@ -51,5 +52,28 @@ jobs:
             github_action_example_linux_arm64
             github_action_example_windows_arm64.exe
             github_action_example_darwin_arm64
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+
+      - name: Generate release tag
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        id: tag
+        run: |
+          echo "::set-output name=release_tag::${{ github.sha }}"
+
+      - name: dev Release
+        uses: softprops/action-gh-release@v1
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        with:
+          files: |
+            github_action_example_linux_amd64
+            github_action_example_windows_amd64.exe
+            github_action_example_darwin_amd64
+            github_action_example_linux_arm64
+            github_action_example_windows_arm64.exe
+            github_action_example_darwin_arm64
+          tag_name: ${{ steps.tag.outputs.release_tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
