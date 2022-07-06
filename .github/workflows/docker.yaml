@@ -32,6 +32,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Login to ACR
+        uses: aliyun/acr-login@v1
+        with:
+          login-server: https://registry.cn-hangzhou.aliyuncs.com
+          username: "${{ secrets.ALI_REGISTRY_USERNAME }}"
+          password: "${{ secrets.ALI_REGISTRY_PASSWORD }}"
+        
       # https://github.com/docker/metadata-action
       - name: Docker meta
         id: meta
@@ -51,7 +58,7 @@ jobs:
 
       # https://github.com/docker/build-push-action
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: .
           platforms: linux/amd64,linux/arm64
