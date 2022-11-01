@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   backend:
-    image: 117503445/github-action-example:sha-85bb207
+    image: 117503445/github-action-example
     restart: unless-stopped
     volumes:
       - /etc/timezone:/etc/timezone:ro

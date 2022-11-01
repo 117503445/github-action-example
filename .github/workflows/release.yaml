@@ -7,12 +7,6 @@ on:
       - "dev"
     tags:
       - "*.*.*"
-  pull_request:
-    branches:
-      - "master"
-      - "dev"
-    tags:
-      - "*.*.*"
 
 jobs:
   release:
@@ -22,7 +16,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-go@v2
         with:
-          go-version: "1.18"
+          go-version: "1.19"
 
       - run: go test ./... -race -coverpkg=./... -coverprofile=coverage.txt -v
 
