@@ -15,5 +15,5 @@ WORKDIR /root
 # https://stackoverflow.com/questions/66963068/docker-alpine-executable-binary-not-found-even-if-in-path
 RUN apk add gcompat 
 
-COPY --from=build /root/app/server server
+COPY --from=build /root/project/server server
 ENTRYPOINT ./server
