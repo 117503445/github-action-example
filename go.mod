@@ -1,6 +1,6 @@
 module github.com/117503445/github-action-example
 
-go 1.19
+go 1.20
 
 require (
 	github.com/spf13/viper v1.13.0

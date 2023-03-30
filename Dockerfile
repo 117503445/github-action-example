@@ -1,4 +1,4 @@
-FROM golang:1.19.2-alpine3.16 as build
+FROM golang:1.20.2-alpine3.17 as build
 LABEL maintainer="117503445"
 RUN apk add --no-cache git
 WORKDIR /root/project
@@ -8,7 +8,7 @@ RUN go mod download
 COPY . .
 RUN go build -ldflags="-s -w" -o server
 
-FROM alpine:3.16 as prod
+FROM alpine:3.17 as prod
 EXPOSE 8080
 WORKDIR /root
 
